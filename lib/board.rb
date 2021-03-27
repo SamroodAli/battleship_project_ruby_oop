@@ -46,6 +46,15 @@ class Board
     end
   end
 
+  def hidden_ships_grid
+    @grid.map do |row|
+      row.map do |ele|
+        ele == :S ? :N : ele
+      end
+    end
+  end
+
+
   def place_random_ships
     quarter =  @size/4
     while num_ships < quarter
@@ -56,6 +65,12 @@ class Board
     end
   end
 
+  def cheat
+    Board.print_grid(@grid)
+  end
 
+  def print
+    Board.print_grid(hidden_ships_grid)
+  end
 
 end
