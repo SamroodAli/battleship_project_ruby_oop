@@ -2,6 +2,7 @@ class Board
   attr_reader :size
 
   def initialize(num_of_rows_columns)
+    @num_of_rows_columns = num_of_rows_columns
     @grid = Array.new(num_of_rows_columns) { Array.new(num_of_rows_columns){:N} }
     @size = num_of_rows_columns*num_of_rows_columns
   end
@@ -18,16 +19,29 @@ class Board
     @grid.flatten.count(:S)
   end
 
+  def is_ship?(pos)
+    self[pos] == :S
+  end
+
   def attack(pos)
     if self[pos] == :S
       self[pos] = :H
       puts "you sunk my battleship!"
       true
     else
-      self[pos]= :X
+      self[pos] = :X
       false
     end
-    
+  end
+
+  def place_random_ships
+    quarter =  @size/4
+    while num_ships < quarter
+      random1 = rand(@num_of_rows_columns)
+      random2=  rand(@num_of_rows_columns)
+      pos = [random1,random2]
+      self[pos] = :S
+    end
   end
 
 end
