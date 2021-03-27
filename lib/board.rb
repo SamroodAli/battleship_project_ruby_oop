@@ -7,6 +7,18 @@ class Board
     @size = num_of_rows_columns*num_of_rows_columns
   end
   
+  def self.print_grid(grid)
+    output = ""
+    grid.each_with_index do |row|
+      row.each do |cell|
+        print cell
+        print " " unless cell == row.last
+      end
+      print "\n"
+    end
+  end
+
+
   def [](array)
     @grid[array[0]][array[1]]
   end
@@ -43,5 +55,7 @@ class Board
       self[pos] = :S
     end
   end
+
+
 
 end
