@@ -31,8 +31,9 @@ class Battleship
     else
       false
     end
-
-
   end
 
+  def game_over?
+    win? || lose?
+  end
 end
