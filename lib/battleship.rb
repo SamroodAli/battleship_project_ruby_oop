@@ -11,8 +11,8 @@ class Battleship
 
   def start_game
     @board.place_random_ships
-    @board.place_random_ships
     @board.print
+    puts "number of ships: #{@board.num_ships}"
   end
 
   def lose?
@@ -36,4 +36,12 @@ class Battleship
   def game_over?
     win? || lose?
   end
+
+  def turn
+    pos = @player.get_move
+    @remaining_misses -=1 unless @board.attack(pos)
+    @board.print
+    puts "remaining guess: #{@remaining_misses}"
+  end
+
 end
